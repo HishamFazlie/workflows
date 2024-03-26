@@ -7,6 +7,11 @@
                     description: "Node Version"
                     required: true
                     type: string
+
+    env: 
+        REGISTRY: ghcr.io
+        IMAGE_NAME: ${{ github.repository }}
+        BRANCH_NAME: ${{ github.ref }}
               
         
     jobs:
@@ -62,13 +67,7 @@
             context: .
             file: Dockerfile
             push: true
-            tags: |
-                ghcr.io/hishamfazlie/app:latest
-                ghcr.io/hishamfazlie/app:1.0.0
+            tags: ghcr.io/hishamfazlie/IMAGE_NAME-BRANCH_NAME:latest
+                
 
-        # - name: Rename Docker image based on branch
-        #   run: |
-        #     IMAGE_NAME="sample-node"  # Change this to whatever you want the base name to be
-        #     BRANCH_NAME=$(echo "${{ github.ref }}" | awk -F'/' '{print $NF}')
-        #     docker tag ghcr.io/hishamfazlie/myapp:${{ github.ref_slug }} ghcr.io/hishamfazlie/$IMAGE_NAME:$BRANCH_NAME
 
