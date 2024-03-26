@@ -1,0 +1,73 @@
+    name: Reusable Workflow 1
+
+    on: 
+      workflow_call:
+            inputs:
+                node-version:
+                    description: "Node Version"
+                    required: true
+                    type: string
+              
+        
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: checkout repo
+              uses: actions/checkout@v4
+              
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: 18 #${{ inputs.node-version }}
+                
+            - run: npm install
+            - run: npm run build
+
+      # test:
+      #   needs: build
+
+      #   runs-on: ubuntu-latest
+
+      #   steps: 
+      #     - name: checkout repo
+      #       uses: actions/checkout@v4
+
+      #     - name: use node.js
+      #       uses: actions/setup-node@v4
+      #       with:
+      #         node-version: 18 #${{ inputs.node-version }}
+              
+      #     - run: npm install
+      #     - run: npm run test
+
+
+        
+      docker-build:
+        runs-on: ubuntu-latest
+    
+        needs: build
+    
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Login to GitHub Container Registry
+          run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+        - name: Rename Docker image based on branch
+          run: |
+            IMAGE_NAME="app-staging"  # Change this to whatever you want the base name to be
+            BRANCH_NAME=$(echo "${{ github.ref }}" | awk -F'/' '{print $NF}')
+            docker tag ghcr.io/hishamfazlie/nodetest ghcr.io/hishamfazlie/$IMAGE_NAME:$BRANCH_NAME
+
+    
+        - name: Build Docker image
+          uses: docker/build-push-action@v4
+          with:
+            context: .
+            file: Dockerfile
+            push: true
+            tags: ghcr.io/hishamfazlie/myapp:${{ github.ref_slug }}
+
