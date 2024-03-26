@@ -57,16 +57,18 @@
           run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
     
         - name: Build Docker image
-          uses: docker/build-push-action@v4
+          uses: docker/build-push-action@v5
           with:
             context: .
             file: Dockerfile
             push: true
-            tags: hishamfazlie/myapp:${{ github.ref_slug }}
+            tags: |
+                user/app:latest
+                user/app:1.0.0
 
-        - name: Rename Docker image based on branch
-          run: |
-            IMAGE_NAME="sample-node"  # Change this to whatever you want the base name to be
-            BRANCH_NAME=$(echo "${{ github.ref }}" | awk -F'/' '{print $NF}')
-            docker tag ghcr.io/hishamfazlie/myapp:${{ github.ref_slug }} ghcr.io/hishamfazlie/$IMAGE_NAME:$BRANCH_NAME
+        # - name: Rename Docker image based on branch
+        #   run: |
+        #     IMAGE_NAME="sample-node"  # Change this to whatever you want the base name to be
+        #     BRANCH_NAME=$(echo "${{ github.ref }}" | awk -F'/' '{print $NF}')
+        #     docker tag ghcr.io/hishamfazlie/myapp:${{ github.ref_slug }} ghcr.io/hishamfazlie/$IMAGE_NAME:$BRANCH_NAME
 
