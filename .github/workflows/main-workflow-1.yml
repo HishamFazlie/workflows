@@ -63,8 +63,8 @@
             file: Dockerfile
             push: true
             tags: |
-                user/app:latest
-                user/app:1.0.0
+                ghcr.io/hishamfazlie/app:latest
+                ghcr.io/hisham/app:1.0.0
 
         # - name: Rename Docker image based on branch
         #   run: |
