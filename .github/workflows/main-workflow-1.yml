@@ -67,7 +67,7 @@
             context: .
             file: Dockerfile
             push: true
-            tags: ghcr.io/hishamfazlie/${{ github.repository }}-${{ github.ref | replace('refs/heads/', '') }}:latest
+            tags: ghcr.io/hishamfazlie/${{ github.repository }}-${{ github.ref }}:latest
                 
 
 
