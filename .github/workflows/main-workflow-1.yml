@@ -23,7 +23,7 @@
                 node-version: ${{ inputs.node-version }}
                 
             - run: npm install
-            - run: npm start
+            - run: npm run build
 
       # test:
       #   needs: build
