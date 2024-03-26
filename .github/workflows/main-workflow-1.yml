@@ -67,7 +67,7 @@
             context: .
             file: Dockerfile
             push: true
-            tags: ${{ github.repository }}-${{ github.ref }}:latest
+            tags: ${{ github.event.repository.name }}-${{ github.ref }}:latest
                 
 
 
