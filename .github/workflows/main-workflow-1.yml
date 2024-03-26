@@ -64,7 +64,7 @@
             push: true
             tags: |
                 ghcr.io/hishamfazlie/app:latest
-                ghcr.io/hisham/app:1.0.0
+                ghcr.io/hishamfazlie/app:1.0.0
 
         # - name: Rename Docker image based on branch
         #   run: |
