@@ -62,11 +62,11 @@
             context: .
             file: Dockerfile
             push: true
-            tags: ghcr.io/hishamfazlie/myapp:${{ github.ref_slug }}
+            tags: hishamfazlie/myapp:${{ github.ref_slug }}
 
         - name: Rename Docker image based on branch
           run: |
             IMAGE_NAME="sample-node"  # Change this to whatever you want the base name to be
             BRANCH_NAME=$(echo "${{ github.ref }}" | awk -F'/' '{print $NF}')
-            docker tag ghcr.io/hishamfazlie/myapp ghcr.io/hishamfazlie/$IMAGE_NAME:$BRANCH_NAME
+            docker tag ghcr.io/hishamfazlie/myapp:${{ github.ref_slug }} ghcr.io/hishamfazlie/$IMAGE_NAME:$BRANCH_NAME
 
