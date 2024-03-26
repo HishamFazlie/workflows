@@ -65,9 +65,10 @@
           uses: docker/build-push-action@v4
           with:
             context: .
+            registry: ghcr.io
             file: Dockerfile
             push: true
-            tags: ghcr.io/${{ github.event.repository.name }}-${{ github.ref_name }}:latest
+            tags: ${{ github.event.repository.name }}-${{ github.ref_name }}:latest
                 
 
 
