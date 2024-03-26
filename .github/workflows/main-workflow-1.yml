@@ -20,7 +20,7 @@
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
-                node-version: 18 #${{ inputs.node-version }}
+                node-version: ${{ inputs.node-version }}
                 
             - run: npm install
             - run: npm run build
@@ -37,7 +37,7 @@
       #     - name: use node.js
       #       uses: actions/setup-node@v4
       #       with:
-      #         node-version: 18 #${{ inputs.node-version }}
+      #         node-version: ${{ inputs.node-version }}
               
       #     - run: npm install
       #     - run: npm run test
