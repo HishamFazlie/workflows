@@ -70,8 +70,3 @@
             push: true
             tags: ${{ github.event.repository.name }}-${{ github.ref_name }}:latest
 
-             
-          # env:
-          #   DOCKER_USERNAME: ${{ github.actor }}
-          #   DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
-
