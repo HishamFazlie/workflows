@@ -67,7 +67,7 @@
             context: .
             file: Dockerfile
             push: true
-            tags: ${{ env.REGISTRY }}/hishamfazlie/${{ env.IMAGE_NAME | lower }}-${{ env.BRANCH_NAME | replace('refs/heads/', '') }}:latest
+            tags: ${{ env.REGISTRY }}/hishamfazlie/${{ env.IMAGE_NAME.tolower() }}-${{ env.BRANCH_NAME | replace('refs/heads/', '') }}:latest
                 
 
 
