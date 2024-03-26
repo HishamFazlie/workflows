@@ -7,11 +7,6 @@
                     description: "Node Version"
                     required: true
                     type: string
-
-    env: 
-        REGISTRY: ghcr.io
-        IMAGE_NAME: ${{ github.repository }}
-        BRANCH_NAME: ${{ github.ref }}
               
         
     jobs:
