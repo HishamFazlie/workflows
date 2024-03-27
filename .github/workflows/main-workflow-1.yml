@@ -7,7 +7,10 @@
                     description: "Node Version"
                     required: true
                     type: string
-              
+
+    env:
+        REGISTRY: ghcr.io
+        GC_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         
     jobs:
       build:
@@ -54,7 +57,11 @@
           uses: actions/checkout@v4
 
         - name: Login to GitHub Container Registry
-          run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          uses: docker/login-action@V4
+          with:
+            registry: ${{ env.REGISTRY }}
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
     
         - name: Build Docker image
           uses: docker/build-push-action@v4
