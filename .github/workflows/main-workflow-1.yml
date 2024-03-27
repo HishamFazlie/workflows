@@ -8,11 +8,11 @@ nv    name: Reusable Workflow 1
                     required: true
                     type: string
 
-    env:
-        # REGISTRY: ghcr.io
-        # GC_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        DOCKERHUB_USERNAME: "hisham17785"
-        DOCKERHUB_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+    # env:
+    #     # REGISTRY: ghcr.io
+    #     # GC_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    #     DOCKERHUB_USERNAME: "hisham17785"
+    #     DOCKERHUB_TOKEN: ${{ secrets.DOCKER_TOKEN }}
         
         
     jobs:
@@ -72,8 +72,8 @@ nv    name: Reusable Workflow 1
         - name: Login to DockerHub
           uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
           with:
-              username: ${{env.DOCKERHUB_USERNAME}}
-              password: ${{ env.DOCKERHUB_TOKEN }}
+              username: hisham17785
+              password: ${{ secrets.DOCKER_TOKEN }}
 
         - name: Extract metadata (tags, labels) for Docker
           id: meta
