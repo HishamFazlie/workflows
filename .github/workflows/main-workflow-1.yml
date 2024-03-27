@@ -67,5 +67,6 @@
             file: Dockerfile
             push: true
             tags: ${{ github.event.repository.name }}-${{ github.ref_name }}:latest
-            secrets: ${{ secrets.envPAT }}
+            secrets: |
+              envPAT: ${{ secrets.envPAT }}
 
