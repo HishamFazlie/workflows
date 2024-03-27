@@ -73,7 +73,7 @@ nv    name: Reusable Workflow 1
           uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
           with:
               username: hisham17785
-              password: ${{ secrets.DOCKER_TOKEN }}
+              password: ${{ secrets.DOCKERHUB_TOKEN }}
 
         - name: Extract metadata (tags, labels) for Docker
           id: meta
