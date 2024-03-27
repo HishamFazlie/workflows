@@ -1,0 +1,44 @@
+    name: Reusable Workflow 2
+
+    on: 
+      workflow_call:
+            inputs:
+                node-version:
+                    description: "Node Version"
+                    required: true
+                    type: string
+
+    env:
+      REGISTRY: ghcr.io
+    
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: checkout repo
+              uses: actions/checkout@v4
+              
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: ${{ inputs.node-version }}
+                
+            - run: npm install
+
+
+      docker-build:
+        runs-on: ubuntu-latest
+    
+        needs: build
+    
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Login to GitHub Container Registry
+          uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+          with:
+            registry: ${{ env.REGISTRY }}
+            username: ${{ github.actor }}
+            password: ${{ secrets.WORKFLOW_TOKEN }}
