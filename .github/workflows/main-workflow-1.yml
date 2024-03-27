@@ -7,6 +7,10 @@
                     description: "Node Version"
                     required: true
                     type: string
+
+    env:
+      DOCKER_UN: ${{secrets.DOCKERHUB_USERNAME}}
+      DOCKER_PW: ${{secrets.DOCKERHUB_TOKEN}}
       
         
     jobs:
@@ -66,8 +70,8 @@
         - name: Login to DockerHub
           uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
           with:
-              username: ${{ secrets.DOCKERHUB_USERNAME }}
-              password: ${{ secrets.DOCKERHUB_TOKEN }}
+              username: ${{ env.DOCKER_UN }}
+              password: ${{ env.DOCKER_PW }}
 
         - name: Extract metadata (tags, labels) for Docker
           id: meta
