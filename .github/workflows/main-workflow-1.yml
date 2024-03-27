@@ -70,17 +70,23 @@
           #   username: ${{ secrets.DOCKER_HUB_USERNAME }}
           #   password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-        - name: Extract metadata (tags, labels) for Docker
-          id: meta
-          uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-          with:
-            images: custodiotech/pipelinetest-image
+        # - name: Extract metadata (tags, labels) for Docker
+        #   id: meta
+        #   uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        #   with:
+        #     images: custodiotech/pipelinetest-image
     
-        - name: Build Docker image
-          uses: docker/build-push-action@v4
-          with:
-            context: .
-            file: Dockerfile
-            push: true
-            tags: ${{ github.event.repository.name }}-${{ github.ref_name }}:latest
+        # - name: Build Docker image
+        #   uses: docker/build-push-action@v4
+        #   with:
+        #     context: .
+        #     file: Dockerfile
+        #     push: false
+        #     tags: ${{ github.event.repository.name }}-${{ github.ref_name }}:latest
+
+        - name: Build image
+          run: docker build . -t custodiotech/${{ github.event.repository.name }}-${{ github.ref_name }}:latest
+
+        - name: Push image to Registry - Docker Hub
+          run: docker push custodiotech/${{ github.event.repository.name }}-${{ github.ref_name }}:latest
 
