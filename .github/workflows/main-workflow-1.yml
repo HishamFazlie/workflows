@@ -7,9 +7,6 @@
                     description: "Node Version"
                     required: true
                     type: string
-            secrets:
-                  envPAT:
-                    required: true
               
         
     jobs:
