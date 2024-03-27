@@ -85,8 +85,8 @@
         #     tags: ${{ github.event.repository.name }}-${{ github.ref_name }}:latest
 
         - name: Build image
-          run: docker build . -t custodiotech/${{ github.event.repository.name }}-${{ github.ref_name }}:latest
+          run: docker build . -t custodiotech/${{ github.event.repository.name }}:${{ github.ref_name }}
 
         - name: Push image to Registry - Docker Hub
-          run: docker push custodiotech/${{ github.event.repository.name }}-${{ github.ref_name }}:latest
+          run: docker push custodiotech/${{ github.event.repository.name }}:${{ github.ref_name }}
 
