@@ -11,8 +11,8 @@
     env:
         # REGISTRY: ghcr.io
         # GC_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        DOCKERHUB_USERNAME: hisham17785
-        DOCKERHUB_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+        DOCKERHUB_USERNAME: "hisham17785"
+        DOCKERHUB_TOKEN: "${{ secrets.DOCKER_TOKEN }}"
         
         
     jobs:
