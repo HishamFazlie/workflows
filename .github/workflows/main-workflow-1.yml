@@ -88,7 +88,7 @@
           run: docker build . -t ${{ github.event.repository.name }}:${{ github.ref_name }}
 
         -name: Tagging the image
-         run: docker tag ${{ github.event.repository.name }}:${{ github.ref_name }} custodiotech/${{ github.event.repository.name }}:${{ github.ref_name }}
+          run: docker tag ${{ github.event.repository.name }}:${{ github.ref_name }} custodiotech/${{ github.event.repository.name }}:${{ github.ref_name }}
 
         - name: Login to DH & Push image to Registry - Docker Hub
           run: docker push custodiotech/${{ github.event.repository.name }}:${{ github.ref_name }}
