@@ -9,8 +9,8 @@
                     type: string
 
     env:
-      DOCKER_UN: ${{secrets.DOCKERHUB_USERNAME}}
-      DOCKER_PW: ${{secrets.DOCKERHUB_TOKEN}}
+      DOCKER_UN: "${{secrets.DOCKERHUB_USERNAME}}"
+      DOCKER_PW: "${{secrets.DOCKERHUB_TOKEN}}"
       
         
     jobs:
